@@ -1,4 +1,6 @@
+import imp
 import pygame
+from pygame.sprite import Group
 from nave import Nave
 from configuraciones import Configuraciones
 
@@ -14,14 +16,18 @@ def run_game():
 
       # Crea una nave
       nave = Nave(ai_configuraciones, pantalla)
+
+      # Crea un grupo para almacenar las balas
+      balas = Group()
      
 
-    # Iniciar el bucle principal del juego
+      # Iniciar el bucle principal del juego
       while True:
         
         # Sirve para escuahr eventos de teclado o ratón
-        fj.verificar_eventos(nave)
+        fj.verificar_eventos(ai_configuraciones, pantalla, nave, balas)
         nave.update()
-        fj.actualizar_pantalla(ai_configuraciones, pantalla, nave)
+        fj.update_balas(balas)
+        fj.actualizar_pantalla(ai_configuraciones, pantalla, nave, balas)
 
 run_game()
