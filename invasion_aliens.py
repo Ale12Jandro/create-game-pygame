@@ -13,14 +13,15 @@ def run_game():
       pygame.display.set_caption("Invasión Alienígena")
 
       # Crea una nave
-      nave = Nave(pantalla)
+      nave = Nave(ai_configuraciones, pantalla)
      
 
     # Iniciar el bucle principal del juego
       while True:
         
         # Sirve para escuahr eventos de teclado o ratón
-        fj.verificar_eventos()
+        fj.verificar_eventos(nave)
+        nave.update()
         fj.actualizar_pantalla(ai_configuraciones, pantalla, nave)
 
 run_game()
